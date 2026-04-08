@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Stethoscope, Eye, EyeOff, Loader2 } from "lucide-react";
-import { authApi } from "@/lib/mock-api";
+import { authApi } from "@/lib";
 
 export default function LoginPage() {
   const router = useRouter();

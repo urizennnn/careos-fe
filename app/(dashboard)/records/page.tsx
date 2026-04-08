@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { Upload, CheckCircle, XCircle, AlertCircle, FileImage, Loader2 } from "lucide-react";
-import { paperBridgeApi } from "@/lib/mock-api";
+import { paperBridgeApi } from "@/lib";
 import type { ExtractedRecord } from "@/types";
 
 type Step = "upload" | "processing" | "verify" | "done";

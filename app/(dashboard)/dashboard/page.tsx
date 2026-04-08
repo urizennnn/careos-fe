@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Activity, FileSearch, Shield, Heart, Users, AlertTriangle, TrendingUp } from "lucide-react";
-import { firstLineApi, mamaWatchApi } from "@/lib/mock-api";
+import { firstLineApi, mamaWatchApi } from "@/lib";
 import type { QueueStats, MaternalPopulationStats } from "@/types";
 import { TriageBadge } from "@/components/Badges";
 import Link from "next/link";

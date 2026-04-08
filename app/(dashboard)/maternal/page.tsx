@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Heart, TrendingUp, AlertTriangle, Calendar, ExternalLink, Loader2 } from "lucide-react";
-import { mamaWatchApi } from "@/lib/mock-api";
+import { mamaWatchApi } from "@/lib";
 import type { MaternalRecord, MaternalPopulationStats, ReferralSummary, VitalsReading } from "@/types";
 import { RiskBadge } from "@/components/Badges";
 

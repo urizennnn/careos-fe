@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { RefreshCw, Clock, User, ChevronRight, AlertCircle } from "lucide-react";
-import { firstLineApi } from "@/lib/mock-api";
+import { firstLineApi } from "@/lib";
 import type { QueueEntry, TriageLevel, QueueStatus } from "@/types";
 import { TriageBadge } from "@/components/Badges";
 import Link from "next/link";

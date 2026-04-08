@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Shield, AlertTriangle, CheckCircle, Info, Loader2, ChevronDown, ChevronUp } from "lucide-react";
-import { scriptGuardApi, patientsApi } from "@/lib/mock-api";
+import { scriptGuardApi, patientsApi } from "@/lib";
 import type { Prescription, PrescriptionFlag } from "@/types";
 import { SafetyBadge } from "@/components/Badges";
 
