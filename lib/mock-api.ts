@@ -345,6 +345,10 @@ const MOCK_EXTRACTED_RECORD: ExtractedRecord = {
 // ─── Mock API Implementation ──────────────────────────────────────────────────
 
 export const authApi = {
+  register: async (_input: { fullName: string; email: string; password: string; role: string }): Promise<ApiResponse<{ id: string; fullName: string; role: string; email: string }>> => {
+    await delay(600);
+    return ok({ id: "DR-001", fullName: _input.fullName, role: _input.role, email: _input.email });
+  },
   login: async (_creds: LoginCredentials): Promise<ApiResponse<AuthResponse>> => {
     await delay(800);
     return ok({

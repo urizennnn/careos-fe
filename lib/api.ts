@@ -24,7 +24,7 @@ import type {
   VitalsReading,
 } from "@/types";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001/api";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3000/api";
 
 // ─── HTTP helper ─────────────────────────────────────────────────────────────
 
@@ -178,7 +178,26 @@ function mapVitalsLog(v: any): VitalsReading {
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 
+export interface RegisterInput {
+  fullName: string;
+  email: string;
+  password: string;
+  role: string;
+}
+
 export const authApi = {
+  register: async (input: RegisterInput): Promise<ApiResponse<{ id: string; fullName: string; role: string; email: string }>> => {
+    return request("/auth/register", {
+      method: "POST",
+      body: JSON.stringify({
+        full_name: input.fullName,
+        email: input.email,
+        password: input.password,
+        role: input.role,
+      }),
+    });
+  },
+
   login: async (creds: LoginCredentials): Promise<ApiResponse<AuthResponse>> => {
     const res = await request<{ access_token?: string; token?: string; staff: Record<string, unknown> }>(
       "/auth/login",
