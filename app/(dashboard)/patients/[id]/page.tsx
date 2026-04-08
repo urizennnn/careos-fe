@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { User, AlertTriangle, Activity, Shield, Heart, ArrowLeft, Loader2 } from "lucide-react";
-import { patientsApi, scriptGuardApi } from "@/lib/mock-api";
+import { patientsApi, scriptGuardApi } from "@/lib";
 import type { Patient, Prescription } from "@/types";
 import { SafetyBadge } from "@/components/Badges";
 import Link from "next/link";

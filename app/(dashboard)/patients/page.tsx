@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { Search, User, ChevronRight, Plus } from "lucide-react";
-import { patientsApi } from "@/lib/mock-api";
+import { patientsApi } from "@/lib";
 import type { Patient } from "@/types";
 import Link from "next/link";
 
