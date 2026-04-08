@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #0a0e14;
+  --bg-surface: #111820;
+  --bg-elevated: #1a2433;
+  --bg-overlay: #1f2d3d;
+  --border-subtle: rgba(255,255,255,0.07);
+  --border-default: rgba(255,255,255,0.12);
+  --border-strong: rgba(255,255,255,0.2);
+  --text-primary: #e8eef5;
+  --text-secondary: #8fa3b8;
+  --text-muted: #4a6078;
+  --triage-red: #ff3b30;
+  --triage-red-bg: rgba(255,59,48,0.1);
+  --triage-red-border: rgba(255,59,48,0.3);
+  --triage-orange: #ff8c00;
+  --triage-orange-bg: rgba(255,140,0,0.1);
+  --triage-orange-border: rgba(255,140,0,0.3);
+  --triage-yellow: #ffd60a;
+  --triage-yellow-bg: rgba(255,214,10,0.1);
+  --triage-yellow-border: rgba(255,214,10,0.3);
+  --triage-green: #30d158;
+  --triage-green-bg: rgba(48,209,88,0.1);
+  --triage-green-border: rgba(48,209,88,0.3);
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-subtle: rgba(59,130,246,0.12);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+body { margin: 0; min-height: 100vh; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
+
+.badge-red { background: var(--triage-red-bg); border: 1px solid var(--triage-red-border); color: var(--triage-red); }
+.badge-orange { background: var(--triage-orange-bg); border: 1px solid var(--triage-orange-border); color: var(--triage-orange); }
+.badge-yellow { background: var(--triage-yellow-bg); border: 1px solid var(--triage-yellow-border); color: var(--triage-yellow); }
+.badge-green { background: var(--triage-green-bg); border: 1px solid var(--triage-green-border); color: var(--triage-green); }
+
+.card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 12px; }
+.card-elevated { background: var(--bg-elevated); border: 1px solid var(--border-default); border-radius: 12px; }
+
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,59,48,0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(255,59,48,0); }
+}
+.pulse-critical { animation: pulse-red 2s ease-in-out infinite; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeInUp 0.3s ease-out forwards; }
+
+.stagger > * { animation: fadeInUp 0.3s ease-out forwards; opacity: 0; }
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger > *:nth-child(6) { animation-delay: 0.3s; }
