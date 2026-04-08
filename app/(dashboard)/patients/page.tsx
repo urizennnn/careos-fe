@@ -36,7 +36,11 @@ function NewPatientModal({ onClose, onCreated }: { onClose: () => void; onCreate
     if (!form.fullName) { setError("Full name is required."); return; }
     setSaving(true);
     setError("");
-    const res = await patientsApi.create(form);
+    const res = await patientsApi.create({
+      ...form,
+      bloodGroup: form.bloodGroup as Patient["bloodGroup"] || undefined,
+      genotype: form.genotype as Patient["genotype"] || undefined,
+    });
     if (res.success) {
       onCreated(res.data);
       onClose();
