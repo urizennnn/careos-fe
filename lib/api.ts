@@ -125,9 +125,11 @@ function mapAssessmentToExtractedRecord(a: any): ExtractedRecord {
     extractionId: a.assessment_id ?? a.assessmentId ?? a.extractionId,
     patientId: a.patient_id ?? a.patientId,
     originalImageUrl: a.raw_input_ref ?? a.originalImageUrl ?? "",
+    status: a.status ?? a.assessment_status ?? a.processing_status,
     extractedData: {
       fullName: out.full_name,
       dateOfBirth: out.date_of_birth,
+      gender: out.gender,
       hospitalNumber: out.hospital_number,
       diagnoses: out.diagnoses ?? [],
       medications: (out.medications ?? []).map(
@@ -292,6 +294,7 @@ export const paperBridgeApi = {
       data: {
         extractionId: raw.assessmentId ?? raw.data?.assessmentId ?? "",
         originalImageUrl: "",
+        status: raw.status ?? raw.data?.status ?? "queued",
         extractedData: {},
         confidenceScores: {},
         humanVerified: false,
@@ -307,11 +310,15 @@ export const paperBridgeApi = {
     const payload = {
       full_name: correctedData.fullName,
       date_of_birth: correctedData.dateOfBirth,
+      gender: correctedData.gender,
       hospital_number: correctedData.hospitalNumber,
       diagnoses: correctedData.diagnoses,
       medications: correctedData.medications,
       allergies: correctedData.allergies,
       vitals: correctedData.vitals,
+      lab_results: correctedData.labResults,
+      procedures: correctedData.procedures,
+      notes: correctedData.notes,
     };
     const res = await request<unknown>(`/paper-bridge/${extractionId}/verify`, {
       method: "PATCH",
@@ -323,6 +330,12 @@ export const paperBridgeApi = {
 
   search: async (query: string): Promise<ApiResponse<Patient[]>> => {
     return patientsApi.search(query);
+  },
+
+  getAssessment: async (extractionId: string): Promise<ApiResponse<ExtractedRecord>> => {
+    const res = await request<unknown>(`/paper-bridge/${extractionId}`);
+    if (!res.success) return res as ApiResponse<ExtractedRecord>;
+    return { success: true, data: mapAssessmentToExtractedRecord(res.data) };
   },
 
   getExtractions: async (): Promise<ApiResponse<ExtractedRecord[]>> => {

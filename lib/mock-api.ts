@@ -400,11 +400,15 @@ export const patientsApi = {
 export const paperBridgeApi = {
   uploadAndExtract: async (_file: File): Promise<ApiResponse<ExtractedRecord>> => {
     await delay(2200); // simulate OCR processing time
-    return ok({ ...MOCK_EXTRACTED_RECORD, extractionId: `EX-${Date.now()}`, createdAt: new Date().toISOString() });
+    return ok({ ...MOCK_EXTRACTED_RECORD, extractionId: `EX-${Date.now()}`, status: "queued", createdAt: new Date().toISOString() });
+  },
+  getAssessment: async (extractionId: string): Promise<ApiResponse<ExtractedRecord>> => {
+    await delay(700);
+    return ok({ ...MOCK_EXTRACTED_RECORD, extractionId, status: "ready" });
   },
   verify: async (extractionId: string, correctedData: ExtractedRecord["extractedData"]): Promise<ApiResponse<ExtractedRecord>> => {
     await delay(500);
-    return ok({ ...MOCK_EXTRACTED_RECORD, extractionId, extractedData: correctedData, humanVerified: true });
+    return ok({ ...MOCK_EXTRACTED_RECORD, extractionId, status: "verified", extractedData: correctedData, humanVerified: true });
   },
   search: async (query: string): Promise<ApiResponse<Patient[]>> => {
     await delay(600);
@@ -412,7 +416,7 @@ export const paperBridgeApi = {
   },
   getExtractions: async (): Promise<ApiResponse<ExtractedRecord[]>> => {
     await delay(500);
-    return ok([MOCK_EXTRACTED_RECORD]);
+    return ok([{ ...MOCK_EXTRACTED_RECORD, status: "ready" }]);
   },
 };
 

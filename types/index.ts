@@ -76,9 +76,11 @@ export interface ExtractedRecord {
   extractionId: string;
   patientId?: string;
   originalImageUrl: string;
+  status?: string;
   extractedData: {
     fullName?: string;
     dateOfBirth?: string;
+    gender?: Gender;
     hospitalNumber?: string;
     diagnoses?: string[];
     medications?: string[];
