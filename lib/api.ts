@@ -292,9 +292,21 @@ export const paperBridgeApi = {
     return {
       success: true,
       data: {
-        extractionId: raw.assessmentId ?? raw.data?.assessmentId ?? "",
+        extractionId:
+          raw.assessment_id ??
+          raw.assessmentId ??
+          raw.data?.assessment_id ??
+          raw.data?.assessmentId ??
+          "",
         originalImageUrl: "",
-        status: raw.status ?? raw.data?.status ?? "queued",
+        status:
+          raw.status ??
+          raw.assessment_status ??
+          raw.processing_status ??
+          raw.data?.status ??
+          raw.data?.assessment_status ??
+          raw.data?.processing_status ??
+          "queued",
         extractedData: {},
         confidenceScores: {},
         humanVerified: false,

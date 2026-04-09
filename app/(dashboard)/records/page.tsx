@@ -127,6 +127,12 @@ export default function RecordsPage() {
       return;
     }
 
+    if (!res.data.extractionId) {
+      setError("Upload succeeded but no assessment ID was returned by the backend.");
+      setStep("upload");
+      return;
+    }
+
     setExtracted(res.data);
     setEdited({});
 
@@ -134,6 +140,8 @@ export default function RecordsPage() {
     if (next.success) {
       syncAssessment(next.data);
       void loadPending();
+    } else {
+      setError(next.error ?? "Assessment created, but the frontend could not fetch its status yet.");
     }
   }, [loadPending, syncAssessment]);
 
